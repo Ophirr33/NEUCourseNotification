@@ -1,0 +1,9 @@
+[package]
+name = "neu_course_notification"
+version = "0.1.0"
+authors = ["Ty Coghlan <coghlan.ty@gmail.com>"]
+
+[dependencies]
+duct = "0.8"
+rusqlite = "^0.10"
+time = "^0.1"
