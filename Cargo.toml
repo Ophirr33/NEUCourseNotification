@@ -4,6 +4,8 @@ version = "0.1.0"
 authors = ["Ty Coghlan <coghlan.ty@gmail.com>"]
 
 [dependencies]
-duct = "0.8"
+duct = "^0.8"
+lettre = "^0.6"
 rusqlite = "^0.10"
-time = "^0.1"
+chrono = "^0.3"
+clap = "^2.22"
