@@ -42,6 +42,7 @@ impl Course {
         }
     }
 
+    // Curls the course website and checks the open seats section from the html
     fn check_open_seats(&self) -> std::result::Result<i32, String> {
         use std::error::Error;
         let curl_stdout = cmd!("curl", "-s", &self.url)
@@ -52,6 +53,7 @@ impl Course {
             .and_then(|out| out.parse::<i32>().map_err(|e| e.description().into()))
     }
 
+    // Parses the result from check_open_seats, and sends an email about it
     fn email_result(&self, count: std::result::Result<i32, String>, recipient: &str) -> std::io::Result<String> {
         let email_message = match count {
             Ok(n) if n == 0 => format!("Unfortunately, there are still no slots open for course {}.\
@@ -77,6 +79,7 @@ impl Course {
             .read()
     }
 
+    // Just stores the count into the database for the 4 hour reports
     fn persist_count(&self, count: i32, dao: &mut DAO) -> Result<()> {
         dao.insert_scraping_count(count, self.course_id)
             .map(|_| ())
