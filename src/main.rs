@@ -172,8 +172,8 @@ fn email_report(dao: &mut DAO, recipient: &str) -> std::result::Result<String, S
 fn main() {
     let matches = App::new("Neu Course Open Seat Notifcations")
         .version("0.1")
-        .about("Chekcs MyNeu and sees if a course is open. Builds summary reports")
-        .author("Ty Coghlan")
+        .about("Checks MyNeu and sees if a course is open. Builds summary reports")
+        .author("Ophirr33")
         .arg(Arg::with_name("database file")
              .help("The sqlite3 database to use")
              .long("database-file")
@@ -249,5 +249,4 @@ fn test_courses() {
     assert_eq!(open_seats, Ok(0));
     assert_eq!(vec![(60356, 0, 3), (60415, 0, 1), (60418, 0, 1), (60356, 1, 1), (60415, 2, 1)],
                dao.build_report().expect("Could not build report"));
-    email_report(&mut dao, "coghlan.ty@gmail.com").expect("Error sending email!");
 }
